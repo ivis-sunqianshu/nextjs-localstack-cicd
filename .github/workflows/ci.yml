@@ -27,3 +27,9 @@ jobs:
       - name: Build static site
         working-directory: ./web
         run: npm run build
+      
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nextjs-static
+          path: web/out
