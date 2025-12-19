@@ -18,7 +18,8 @@ export default function Home() {
           </h1>
 
           <p className="text-sm text-zinc-500">
-            Build time: {new Date().toISOString()}
+            現在時刻: {new Date().toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" })
+            }
           </p>
 
           <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
