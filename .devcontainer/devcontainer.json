@@ -1,0 +1,10 @@
+{
+	"name": "nextjs-s3-localstack-dev",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "dev",
+	"workspaceFolder": "/workspaces/nextjs-s3-localstack-dev",
+	"forwardPorts": [
+		4566
+	],
+	"remoteUser": "node"
+}
