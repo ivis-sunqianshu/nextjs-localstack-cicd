@@ -18,7 +18,7 @@ export default function Home() {
           </h1>
 
           <p className="text-sm text-zinc-500">
-            現在時刻: {new Date().toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" })
+            デプロイ時刻: {new Date().toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" })
             }
           </p>
 
