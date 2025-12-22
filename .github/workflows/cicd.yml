@@ -9,9 +9,6 @@ jobs:
   build-and-deploy:
     runs-on: [self-hosted, linux]
 
-    env:
-      NEXT_CACHE_DIR: .next/cache
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -26,13 +23,7 @@ jobs:
       # ===== CI =====
       - name: Install dependencies
         working-directory: ./web
-        run: npm ci
-
-      - name: Restore Next.js build cache
-        uses: actions/cache@v4
-        with:
-          path: web/.next/cache
-          key: next-cache-${{ hashFiles('web/package-lock.json') }}
+        run: npm Install
 
       - name: Build static site
         working-directory: ./web
