@@ -4,7 +4,7 @@ set -e
 
 # ===== 設定 =====
 # LocalStack のエンドポイント
-ENDPOINT_URL="http://localhost:4566"
+ENDPOINT_URL="http://localstack:4566"
 
 # デプロイ先 S3 バケット名
 BUCKET_NAME="next-static"

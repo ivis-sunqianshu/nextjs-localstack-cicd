@@ -1,6 +1,0 @@
-node_modules/
-.next/
-out/
-
-# GitHub Actions self-hosted runner
-actions-runner/
