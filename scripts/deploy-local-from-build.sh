@@ -5,6 +5,8 @@ set -e
 # ===== 設定 =====
 # LocalStack のエンドポイント
 ENDPOINT_URL="http://localstack:4566"
+# LocalStack 上での公開 URL
+PUBLIC_URL="http://localhost:4566"
 
 # デプロイ先 S3 バケット名
 BUCKET_NAME="next-static"
@@ -21,9 +23,9 @@ if [ ! -d "$BUILD_DIR" ]; then
 fi
 
 # ===== LocalStack 用のダミー AWS 認証情報 =====
-export AWS_ACCESS_KEY_ID=test
-export AWS_SECRET_ACCESS_KEY=test
-export AWS_DEFAULT_REGION=ap-northeast-1
+export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-test}
+export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-test}
+export AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION:-ap-northeast-1}
 
 # ===== S3 バケット作成（既存の場合は無視）=====
 aws --endpoint-url="$ENDPOINT_URL" s3 mb "s3://$BUCKET_NAME" || true
@@ -32,5 +34,5 @@ aws --endpoint-url="$ENDPOINT_URL" s3 mb "s3://$BUCKET_NAME" || true
 aws --endpoint-url="$ENDPOINT_URL" s3 sync "$BUILD_DIR" "s3://$BUCKET_NAME"
 
 echo "::notice::デプロイ完了"
-echo "::notice::URL: $ENDPOINT_URL/$BUCKET_NAME/index.html"
+echo "::notice::URL: $PUBLIC_URL/$BUCKET_NAME/index.html"
 
