@@ -23,7 +23,7 @@ jobs:
       # ===== CI =====
       - name: Install dependencies
         working-directory: ./web
-        run: npm Install
+        run: npm ci
 
       - name: Build static site
         working-directory: ./web
