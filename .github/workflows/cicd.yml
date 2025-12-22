@@ -1,11 +1,13 @@
-name: CI Pipeline
+name: CI + CD Pipeline
 
 on:
+  push:
+    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  build-and-deploy:
+    runs-on: [self-hosted, linux]
 
     steps:
       - name: Checkout
@@ -18,6 +20,7 @@ jobs:
           cache: npm
           cache-dependency-path: web/package-lock.json
 
+      # ===== CI =====
       - name: Install dependencies
         working-directory: ./web
         run: npm ci
@@ -25,9 +28,7 @@ jobs:
       - name: Build static site
         working-directory: ./web
         run: npm run build
-      
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: nextjs-static
-          path: web/out
+
+      # ===== CD =====
+      - name: Deploy to LocalStack S3
+        run: bash scripts/deploy-local-from-build.sh
